@@ -9,7 +9,7 @@ from ..data.all import *
 from ..optimizer import *
 
 # Cell
-_inner_loop = "begin_batch after_pred after_loss after_backward after_step after_cancel_batch after_batch".split()
+_inner_loop = "begin_batch begin_pred after_pred begin_loss after_loss begin_backward after_backward begin_step after_step after_cancel_batch after_batch".split()
 
 # Cell
 class Callback(GetAttr):
@@ -128,8 +128,8 @@ _ex_docs = dict(
 for c,d in _ex_docs.items(): mk_class(c,sup=Exception,doc=d)
 
 # Cell
-_events = L.split('begin_fit begin_epoch begin_train begin_batch after_pred after_loss \
-    after_backward after_step after_cancel_batch after_batch after_cancel_train \
+_events = L.split('begin_fit begin_epoch begin_train begin_batch begin_pred after_pred begin_loss after_loss \
+    begin_backward after_backward begin_step after_step after_cancel_batch after_batch after_cancel_train \
     after_train begin_validate after_cancel_validate after_validate after_cancel_epoch \
     after_epoch after_cancel_fit after_fit')
 
