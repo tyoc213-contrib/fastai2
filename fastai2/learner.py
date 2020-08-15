@@ -15,8 +15,8 @@ from .callback.core import *
 
 # Cell
 _loop = ['Start Fit', 'before_fit', 'Start Epoch Loop', 'before_epoch', 'Start Train', 'before_train',
-         'Start Batch Loop', 'before_batch', 'after_pred', 'after_loss', 'after_backward', 'before_backward',
-         'after_step', 'after_cancel_batch', 'after_batch','End Batch Loop','End Train',
+         'Start Batch Loop', 'before_batch', 'before_pred', 'after_pred', 'before_loss', 'after_loss', 'after_backward', 'before_backward',
+         'before_step', 'after_step', 'after_cancel_batch', 'after_batch','End Batch Loop','End Train',
          'after_cancel_train', 'after_train', 'Start Valid', 'before_validate','Start Batch Loop',
          '**CBs same as train batch**', 'End Batch Loop', 'End Valid', 'after_cancel_validate',
          'after_validate', 'End Epoch Loop', 'after_cancel_epoch', 'after_epoch', 'End Fit',
@@ -161,12 +161,15 @@ class Learner():
         for o in enumerate(self.dl): self.one_batch(*o)
 
     def _do_one_batch(self):
+        self('before_pred')
         self.pred = self.model(*self.xb);                self('after_pred')
         if len(self.yb) == 0: return
+        self('before_loss')
         self.loss = self.loss_func(self.pred, *self.yb); self('after_loss')
         if not self.training: return
         self('before_backward')
         self._backward();                                self('after_backward')
+        self('before_step')
         self._step();                                    self('after_step')
         self.opt.zero_grad()
 

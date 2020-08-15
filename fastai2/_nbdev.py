@@ -794,6 +794,7 @@ index = {"subplots": "00_torch_core.ipynb",
          "RegModel": "97_test_utils.ipynb",
          "synth_learner": "97_test_utils.ipynb",
          "VerboseCallback": "97_test_utils.ipynb",
+         "TraceCB": "97_test_utils.ipynb",
          "PYTORCH_URL": "99_pytorch_doc.ipynb",
          "pytorch_doc_link": "99_pytorch_doc.ipynb"}
 

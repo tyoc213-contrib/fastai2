@@ -12,8 +12,8 @@ from ..optimizer import *
 #nbdev_comment _all_ = ['CancelFitException', 'CancelEpochException', 'CancelTrainException', 'CancelValidException', 'CancelBatchException']
 
 # Cell
-_events = L.split('before_fit before_epoch before_train before_batch after_pred after_loss \
-    before_backward after_backward after_step after_cancel_batch after_batch after_cancel_train \
+_events = L.split('before_fit before_epoch before_train before_batch before_pred after_pred before_loss after_loss \
+    before_backward after_backward before_step after_step after_cancel_batch after_batch after_cancel_train \
     after_train before_validate after_cancel_validate after_validate after_cancel_epoch \
     after_epoch after_cancel_fit after_fit')
 
@@ -24,7 +24,7 @@ mk_class('event', **_events.map_dict(),
 #nbdev_comment _all_ = ['event']
 
 # Cell
-_inner_loop = "before_batch after_pred after_loss before_backward after_backward after_step after_cancel_batch after_batch".split()
+_inner_loop = "before_batch before_pred after_pred before_loss after_loss before_backward after_backward before_step after_step after_cancel_batch after_batch".split()
 
 # Cell
 @funcs_kwargs(as_method=True)
